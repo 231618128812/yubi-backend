@@ -63,3 +63,17 @@ create table if not exists post_favour
     index idx_postId (postId),
     index idx_userId (userId)
 ) comment '帖子收藏';
+
+-- 图表表
+create table if not exists chart(
+    id bigint primary key comment 'id',
+    user_id bigint comment '创建的用户id',
+    `name` varchar(32) not null comment '图表名称',
+    chart_type varchar(32) not null comment '图表类型',
+    goal varchar(1024) not null comment '分析目标',
+    gen_chart text comment 'AI生成的图表代码',
+    gen_result text comment 'AI生产的图表结论',
+    create_time datetime comment '创建时间',
+    update_time TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    del_flag char(1) default '0' comment '逻辑删除(0-表示正常,1-表示删除)'
+)comment '图表表';
